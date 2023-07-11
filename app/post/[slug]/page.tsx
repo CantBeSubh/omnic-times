@@ -1,8 +1,10 @@
+"use client"
 import { Separator } from "@/components/ui/separator";
 import { Post } from "@/lib/interface";
 import { sanityClient } from "@/lib/sanity";
 import { urlFor } from "@/lib/sanityImageUrl";
 import { PortableText } from "@portabletext/react";
+import { ArrowUpRight } from "lucide-react";
 import moment from "moment";
 import Image from "next/image";
 
@@ -27,13 +29,42 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
                 <Image
                     src={urlFor(value).url()}
                     alt="Image"
-                    className="rounded-lg"
+                    className="rounded-lg border my-10"
                     width={800}
                     height={800}
                     objectFit="fill"
                 />
             ),
         },
+        block: {
+            h1: ({ children }: { children: any }) => (<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">{children}</h1>),
+            h2: ({ children }: { children: any }) => (<h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">{children}</h2>),
+            h3: ({ children }: { children: any }) => (<h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">{children}</h3>),
+            h4: ({ children }: { children: any }) => (<h4 className="scroll-m-20 text-xl font-semibold tracking-tight">{children}</h4>),
+            h5: ({ children }: { children: any }) => (<h5 className="scroll-m-20 text-lg font-semibold tracking-tight">{children}</h5>),
+            h6: ({ children }: { children: any }) => (<h6 className="scroll-m-20 text-base font-semibold tracking-tight">{children}</h6>),
+            p: ({ children }: { children: any }) => (<p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>),
+            blockquote: ({ children }: { children: any }) => (<blockquote className="mt-6 border-l-2 pl-6 italic">{children}</blockquote>),
+            code: ({ children }: { children: any }) => (<code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">{children}</code>),
+        },
+        list: {
+            bullet: ({ children }: { children: any }) => (<ul className="my-6 ml-6 list-disc [&>li]:mt-2">{children}</ul>),
+            number: ({ children }: { children: any }) => (<ol className="my-6 ml-6 list-decimal [&>li]:mt-2">{children}</ol>),
+        },
+        listItem: {
+            bullet: ({ children }: { children: any }) => (<li className="leading-7 [&:not(:first-child)]:mt-6">{children}</li>),
+            number: ({ children }: { children: any }) => (<li className="leading-7 [&:not(:first-child)]:mt-6">{children}</li>),
+        },
+        marks: {
+            link: ({ children, value }: { children: any, value: any }) => {
+                const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+                return (
+                    <a href={value.href} rel={rel} className="font-medium text-primary underline underline-offset-4 decoration-wavy flex">
+                        {children} <ArrowUpRight size={20} />
+                    </a>
+                )
+            }
+        }
     };
 
     return (
@@ -62,14 +93,21 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
             <div className="divide-y divide-gray-200 pb-7 dark:divide-gray-700 xl:divide-y-0">
                 <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
                     <div className="prose max-w-none pb-8 pt-10 dark:prose-invert prose-lg">
-                        <PortableText
-                            value={post.content}
-                            components={PortableTextComponent}
-                        />
+                        <div
+                            className="remove-all"
+                            style={{ all: "unset" }}
+                        >
+
+                            <PortableText
+                                value={post.content}
+                                // @ts-ignore
+                                components={PortableTextComponent}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
