@@ -12,6 +12,7 @@ const getPosts = async () => {
   const data = await sanityClient.fetch(query);
   return data;
 }
+export const revalidate = 0;
 
 const IndexPage = async () => {
 
