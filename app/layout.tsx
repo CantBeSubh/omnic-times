@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Fira_Code } from 'next/font/google'
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/provider/theme-provider"
 import Navbar from '@/components/navbar'
 
 const firacode = Fira_Code({ subsets: ['latin'] })
@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={firacode.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          {children}
+          <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
