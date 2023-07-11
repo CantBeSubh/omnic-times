@@ -6,6 +6,7 @@ import { urlFor } from "@/lib/sanityImageUrl";
 import { PortableText } from "@portabletext/react";
 import { ArrowUpRight } from "lucide-react";
 import moment from "moment";
+import { Metadata } from "next";
 import Image from "next/image";
 
 interface PostPageProps {
@@ -20,6 +21,10 @@ const getPost = async (slug: string) => {
     return data;
 }
 
+export const metadata: Metadata = {
+    title: 'OmnicTimes',
+    description: 'OmnicTimes is a news site for latest Overwatch news and updates.',
+}
 
 const PostPage: React.FC<PostPageProps> = async ({ params }) => {
     const post = await getPost(params.slug) as Post;
