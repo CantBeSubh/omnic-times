@@ -8,11 +8,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 const getPosts = async () => {
-  const query = `*[_type == "post"]`;
+  const query = `*[_type == "post"] | order(_createdAt desc)  `;
   const data = await sanityClient.fetch(query);
   return data;
 }
 export const revalidate = 0;
+export const fetchCache = "force-no-store";
+export const dynamic = "force-dynamic";
 
 const IndexPage = async () => {
 
