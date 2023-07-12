@@ -35,6 +35,7 @@ const Gallary: React.FC<GallaryProps> = ({ posts }) => {
                             href={`/post/${post.slug.current}`}
                             className="space-y-3 xl:col-span-3 ml-4"
                             prefetch
+                            target="_blank"
                         >
                             <div>
                                 <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
