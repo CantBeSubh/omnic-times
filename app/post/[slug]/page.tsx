@@ -38,7 +38,7 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
         },
         block: {
             h1: ({ children }: { children: any }) => (<h1 className="scroll-m-20 mb-4 text-4xl font-extrabold tracking-tight lg:text-5xl">{children}</h1>),
-            h2: ({ children }: { children: any }) => (<h2 className="scroll-m-20 mb-4 border-b text-3xl font-semibold tracking-tight transition-colors first:mt-0">{children}</h2>),
+            h2: ({ children }: { children: any }) => (<h2 className="scroll-m-20 mb-4 border-b text-3xl font-semibold tracking-tight transition-colors mt-4">{children}</h2>),
             h3: ({ children }: { children: any }) => (<h3 className="scroll-m-20 mb-4 text-2xl font-semibold tracking-tight">{children}</h3>),
             h4: ({ children }: { children: any }) => (<h4 className="scroll-m-20 mb-4 text-xl font-semibold tracking-tight">{children}</h4>),
             h5: ({ children }: { children: any }) => (<h5 className="scroll-m-20 mb-4 text-lg font-semibold tracking-tight">{children}</h5>),
